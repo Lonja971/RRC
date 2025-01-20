@@ -1,0 +1,141 @@
+.chat{
+}
+.chat__container{
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.main-title{
+    width: 100%;
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+}
+.main-title h1{
+    padding: 10px 20px;
+    background-color: #e6e6e6;
+    border-radius: 12px;
+    border: 3px solid #fff;
+    text-align: center;
+}
+.w{
+    height: 2000px;
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0.443), rgba(0, 157, 255, 0.493));
+}
+
+/*---MESSAGES-BLOCK---*/
+
+.crew-is-working-block{
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #e6e6e6;
+    border-radius: 0px 0px 0px 10px;
+    border: 3px solid #fff;
+    padding: 5px 10px;
+}
+
+.messages{
+    margin-bottom: 115px;
+    width: 100%;
+    height: 100%;
+    padding: 50px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.message{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 70%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+
+    align-self: flex-start;
+    background-color: #e6e6e6;
+    border: 1px solid #dcdcdc;
+}
+@media (max-width: 900px) {
+    .message{
+        max-width: 85%;
+    }
+}
+@media (max-width: 500px) {
+    .message{
+        max-width: 100%;
+    }
+}
+
+.message.user-message{
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    border: 1px solid #c8e6c9;
+}
+.message.final-answer{
+    align-self: flex-start;
+    background-color: #f8f5c6;
+    border: 1px solid #ffc8006e;
+}
+.message.technical-message{
+    align-self: flex-start;
+    background-color: #c2c1c1;
+    border: 1px solid #b4b4b4;
+}
+.message.error-message{
+    align-self: flex-start;
+    background-color: #f8000077;
+    border: 1px solid #8c0000b9;
+}
+
+.message__info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.message__info-icon{
+    width: 32px;
+    height: 32px;
+}
+.message__info-icon img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 255, 0.208);
+}
+.message__info h3{
+    text-transform: capitalize;
+}
+.message__textblock{
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+/*---SENDBOX---*/
+
+.sendbox{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-top: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 15px 0px;
+}
+
+.sendbox__form{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5px;
+}
+.sendbox__form textarea{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+    padding: 10px 10px;
+}

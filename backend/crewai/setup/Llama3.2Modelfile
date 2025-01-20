@@ -1,0 +1,6 @@
+FROM llama3.2
+
+PARAMETER temperature 0.3
+PARAMETER stop Result
+
+SYSTEM """"""

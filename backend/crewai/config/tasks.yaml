@@ -1,0 +1,107 @@
+product_owner_task:
+  description: >
+    Op basis van de informatie die door de gebruiker is verstrekt over hun projectvereisten en voorkeuren ({query}),
+    ben je verantwoordelijk voor het genereren van een JSON bestand met informatie over een project en bijbehorende user stories.
+
+    Het JSON bestand moet bestaan uit twee hoofdcomponenten: 
+    een lijst van projectdetails en een lijst van user stories in het Scrum-formaat.
+
+    **Projects**: Gebaseerd op de door de gebruiker verstrekte informatie genereer je een enkel projectobject met de volgende velden:
+    - **name**: De naam van het project, afgeleid van de informatie die de gebruiker heeft gegeven.
+    - **key**: Een unieke korte projectcode (bijvoorbeeld een acroniem), afgeleid van de projectnaam of beschrijving. Bedenk het zelf op basis van de projectnaam.
+    - **type**: De vaste waarde "software".
+    - **description**: Een beschrijving van het project, gebaseerd op de verstrekte informatie.
+
+    **User Stories**: Op basis van de projectdetails genereer je meerdere user stories in Scrum-formaat. Elke user story moet de volgende velden bevatten:
+    - **title**: De titel van de user story in de vorm van "Als ProductOwner wil ik...".
+    - **description**: Een gedetailleerde beschrijving van de user story, inclusief de acceptatiecriteria en testgevallen, gepresenteerd in Markdown-formaat.
+    
+    Zorg ervoor dat de beschrijving van elke user story duidelijk en goed gestructureerd is en de juiste Markdown-stijl gebruikt voor leesbaarheid. 
+    Vraag indien nodig aanvullende informatie aan de gebruiker om de vereisten volledig te begrijpen.
+
+  expected_output: >
+    Het verwachte resultaat is een JSON-object met twee hoofdcomponenten: **projects** en **user_stories**.
+    Vul de arrayvelden in het Nederlands in.
+
+    De structuur van het JSON-bestand moet als volgt zijn:
+    
+    {{
+      "projects": {{
+        "projects": [
+            "name": "A Sample Project",
+            "key": "ASM",
+            "type": "software",
+            "description": "Beschrijving van het project, gebaseerd op de informatie van de gebruiker."
+        ]
+      }},
+      "user_stories": [
+        {{
+          "title": "Als ProductOwner wil ik een overzicht van alle bestellingen kunnen bekijken.",
+          "description": "### User Story\n\nAls ProductOwner wil ik een overzicht van alle bestellingen kunnen bekijken, zodat ik snel inzicht krijg in de status van bestellingen en deze kan goedkeuren of afwijzen.\n\nDeze feature is essentieel voor het beheren van bestellingen en om ervoor te zorgen dat klanten op tijd worden geïnformeerd over de status van hun bestellingen.\n\n#### Acceptatiecriteria\n\n1. Het overzicht toont alle bestellingen die zijn geplaatst door klanten.\n2. Elke bestelling bevat de klantnaam, het product, de hoeveelheid en de status van de bestelling.\n3. De gebruiker kan bestellingen goedkeuren of afwijzen.\n4. Het systeem verstuurt een e-mail naar de klant zodra hun bestelling is goedgekeurd of afgewezen.\n\n#### Testgevallen\n\n- 1. Log in als ProductOwner en bekijk het overzicht van bestellingen. Verifieer dat alle bestellingen correct worden weergegeven.\n- 2. Klik op een bestelling om deze goed te keuren en controleer of de status van de bestelling wordt bijgewerkt naar 'Goedgekeurd'.\n- **Test 3**: Verifieer dat de klant een e-mail ontvangt zodra de bestelling is goedgekeurd of afgewezen."
+        }}
+      ]
+    }}
+    
+    Zorg ervoor dat elk item in **user_stories** goed gestructureerd is en dat alle informatie correct en volledig is.
+
+
+
+
+
+developer_task:
+  description: >
+    Antwoord in het Nederlands.
+    De agent krijgt een user_story en moet een lijst van Scrum-taken (tasks) genereren op basis van deze user_story: {title}.
+    Hier is ook de beschrijving van dit user_story: {description}.
+    Elke taak moet als een JIRA-issue gestructureerd zijn, met de juiste velden en waarden.
+    Zorg ervoor dat het eindresultaat alleen de taken bevat, zonder andere items of geneste structuren.
+    
+    Elk gegenereerd item moet de volgende velden bevatten:
+    
+    - **status**: De standaard waarde "Open".
+    - **issueType**: "Story" voor de user_story, en "Task" voor elke gerelateerde taak.
+    - **created**: De aanmaakdatum en -tijd in het formaat "YYYY-MM-DDTHH:MM:SS.000+0000".
+    - **updated**: De datum en tijd van de laatste update in hetzelfde formaat.
+    - **summary**: Een beknopte beschrijving van de taak.
+    - **externalId**: Een uniek ID voor elke taak. Definieer het als volgt voor elk element: 1, 2, 3... .
+    - **description**: De gedetailleerde beschrijving van de Task, inclusief de acceptatiecriteria en testgevallen, gepresenteerd in Markdown-formaat.
+
+    Gebruik de "human"-tool om extra informatie van de gebruiker te verkrijgen als dat nodig is voor het genereren van de taken. Stel de vragen in het Nederlands.
+    Om de huidige datum voor de velden "aangemaakt" en "bijgewerkt" te bepalen, gebruikt u de tool "get_time_tool".
+
+  expected_output: >
+    Het verwachte resultaat is een lijst van JSON-objecten, elk representatief voor een taak. 
+    Vul de arrayvelden in het Nederlands in.
+    Elk object moet de volgende velden bevatten:
+
+    - **status**: De waarde "Open".
+    - **issueType**: De waarde "Story" voor de eerste user_story, en "Task" voor alle gerelateerde taken.
+    - **created**: De aanmaakdatum en -tijd in het formaat "YYYY-MM-DDTHH:MM:SS.000+0000".
+    - **updated**: De datum en tijd van de laatste update in hetzelfde formaat.
+    - **summary**: Een korte beschrijving van de taak of user_story.
+    - **externalId**: Een unieke ID-waarde voor elke taak. Definieer het als volgt voor elk element: 1, 2, 3... .
+    - **description**: De gedetailleerde beschrijving van de Task, inclusief de acceptatiecriteria en testgevallen, gepresenteerd in Markdown-formaat.
+
+    
+    Het eindresultaat moet als een lijst worden teruggestuurd, zonder extra markeringen, opmerkingen of geneste structuren, bijvoorbeeld:
+
+    [
+        {{
+            "status": "Open",
+            "issueType": "Story",
+            "created": "2023-11-01T12:00:00.000+0000",
+            "updated": "2023-11-01T12:30:00.000+0000",
+            "summary": {title},
+            "externalId": "1",
+            "description": {description}
+        }},
+        {{
+            "status": "Open",
+            "issueType": "Task",
+            "created": "2023-11-01T12:00:00.000+0000",
+            "updated": "2023-11-01T12:30:00.000+0000",
+            "summary": "Een korte beschrijving van de taak of user_story.",
+            "externalId": "2",
+            "description": "#### Deze taak betreft het maken van een nieuwe database tabel die alle informatie bevat over bestellingen, zoals productnaam, klantnaam, prijs, en datum van bestelling. Deze tabel moet integreren met de bestaande systemen voor orderverwerking.\n\n#### Acceptatiecriteria:\n- De tabel bevat de volgende velden: productnaam, klantnaam, prijs, datum van bestelling.\n- De tabel is succesvol gekoppeld aan het orderverwerkingssysteem.\n\n#### Testgevallen:\n- Test 1: Controleer of de tabel de juiste velden bevat.\n- Test 2: Controleer of de gegevens correct worden ingevoerd in de tabel via het orderverwerkingssysteem."
+        }},
+    ]
