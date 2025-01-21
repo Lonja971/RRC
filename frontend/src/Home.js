@@ -6,6 +6,7 @@ import { MessagesBlock } from "./components/messages-block";
 import { MESSAGES_TYPES } from "./components/constants";
 
 export function Home(){
+    console.log("Commit from Windows");
     const [userRequest, setUserRequest] = useState('');
     const [messages, setMessages] = useState([
       {
