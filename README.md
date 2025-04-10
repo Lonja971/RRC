@@ -26,7 +26,7 @@ Het systeem is opgedeeld in twee hoofdcomponenten:
 
 #### Download het bestand.
 
-```http
+```
   ${domain}/api/download/${filename}
 ```
 | Parameter | Type     | Description                       |
@@ -36,7 +36,7 @@ Het systeem is opgedeeld in twee hoofdcomponenten:
 
 #### Stuur een bericht.
 
-```http
+```
   ${domain}/api/send_message/
 ```
 | Parameter | Type     | Description                       |
@@ -46,7 +46,7 @@ Het systeem is opgedeeld in twee hoofdcomponenten:
 
 #### Alle berichten ontvangen.
 
-```http
+```
   ${domain}/api/return_answer/
 ```
 | Parameter | Type     | Description                       |
