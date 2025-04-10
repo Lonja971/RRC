@@ -1,11 +1,6 @@
 # Requirements Refining Crew
 
-**Requirements Refining Crew** is a project built with React and Crewai that assists in generating Scrum tasks based on a project topic. The user inputs a topic, and the application automatically creates relevant tasks for efficient project management.
-
-## 📚 Tech Stack
-
-- **Frontend**: React
-- **Backend**: Flask (Python) with Crewai integration
+**Requirements Refining Crew** is een chatwebsite met kunstmatige intelligentie die projectbeschrijvingen analyseert en op basis daarvan User Stories en Taken genereert voor het Scrum-bord. Hierdoor kunnen ontwikkelaars sneller en efficiënter werken binnen het Scrum-framework.
 
 ## ✨ Functionality
 
@@ -13,13 +8,58 @@
 - **Interactive Task Management**: Offers an interface to manage generated tasks.
 - **AI-Driven Task Creation**: Uses artificial intelligence to analyze and create appropriate tasks based on input.
 
+## 📚 Tech Stack
+
+- **Frontend**: React.js
+- **Backend**: Python (Flask), CrewAI framework
+- **AI integratie**: CrewAI agents (LLM pipelines)
+
+## 🧱 Architectuur
+
+Het systeem is opgedeeld in twee hoofdcomponenten:
+
+- **Frontend**: gebruikers voeren hun input in via een chatinterface
+
+- **Backend**: AI verwerkt input via CrewAI-agents en retourneert gestructureerde output De frontend communiceert met de backend via een REST API.
+
+## API
+
+#### Download het bestand.
+
+```http
+  ${domain}/api/download/${filename}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Method`  | `GET`    |                                   |
+| `filename`| `string` | **Required** Filename.            |
+
+#### Stuur een bericht.
+
+```http
+  ${domain}/api/send_message/
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Method`  | `POST`   |                                   |
+| `query   `| `string` | **Required** Berichtentest.       |
+
+#### Alle berichten ontvangen.
+
+```http
+  ${domain}/api/return_answer/
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `Method`  | `GET`    |                                   |
+
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
 First, clone this repository to your local machine using the following command:
 
 ```
-git clone git@bitbucket.org:mixcom-repo/crewai-analysis.git
+git clone https://github.com/Lonja971/RRC.git
 ```
 After downloading the repository, go one folder down (to the project folder).
 

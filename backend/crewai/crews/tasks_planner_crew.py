@@ -66,9 +66,6 @@ class TasksPlannerCrew():
 				step_callback_extra_info += "\n**Log**:\n\n"
 				step_callback_extra_info += f"{getattr(action, 'text', 'Unknown')}\n\n"
 	
-		elif isinstance(agent_output, AgentFinish):
-			step_callback_info = agent_output.return_values.get("output", "Unknown")
-	
 		else:
 			step_callback_info += f"unexpected_type: {agent_output}"
 			step_callback_info += f"unexpected_output: {agent_output}\n\n"
@@ -107,10 +104,10 @@ class TasksPlannerCrew():
 		return Task(
 			config = self.tasks_config['developer_task'],
 			agent = self.search_agent(),
-			tools=[
-				HumanInput(),
-		  	GetTimeTool()
-			],
+			#tools=[
+			#	HumanInput(),
+		  	#	GetTimeTool()
+			#],
 		)
 
 	@crew
