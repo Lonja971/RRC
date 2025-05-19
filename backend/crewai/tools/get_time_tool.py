@@ -1,12 +1,11 @@
 from typing import Optional
 import pytz
 from dotenv import load_dotenv
-from docx import Document
 
 from langchain_core.callbacks import CallbackManagerForToolRun
 from langchain_core.tools import BaseTool
 
-from datetime import datetime, timezone
+from datetime import datetime
 
 load_dotenv()
 user_answer = None

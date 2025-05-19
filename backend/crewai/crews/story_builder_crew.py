@@ -30,8 +30,7 @@ for attr in dir(Telemetry):
 
 @CrewBase
 class StoryBuilderCrew():
-
-	from typing import Union, List, Tuple, Dict
+	"""Story Builder Crew config"""
 
 	def step_callback(self, agent_output: Union[str, List[Tuple[Dict, str]], AgentFinish], agent_name, *args):
 		step_callback_info = ""
@@ -81,7 +80,6 @@ class StoryBuilderCrew():
     }
 		requests.get(f'{os.getenv("FLASK_BASE")}{os.getenv("FLASK_RETURN_ANSWER_API")}', json=message)
 
-	"""TestRagCrew crew"""
 	agents_config = '../config/agents.yaml'
 	tasks_config = '../config/tasks.yaml'
 
@@ -101,15 +99,16 @@ class StoryBuilderCrew():
 		return Task(
 			config = self.tasks_config['product_owner_task'],
 			agent = self.search_agent(),
-			#tools=[
-			#	HumanInput()
-			#],
-			#context = [self.create_tasks()],
+			tools=[
+				HumanInput()
+			],
+			context = [self.create_tasks()],
 		)
 
 	@crew
 	def crew(self) -> Crew:
-		"""Creates the MainCrew crew"""
+		"""Creates the Story Builder crew"""
+		
 		return Crew(
 			agents = self.agents,
 			tasks = self.tasks,

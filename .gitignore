@@ -21,7 +21,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-my-notes
-
 backend/data
 backend/poetry.lock
+

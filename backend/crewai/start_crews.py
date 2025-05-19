@@ -4,7 +4,7 @@ from crews.tasks_planner_crew import TasksPlannerCrew
 import json, os, requests, time
 from datetime import datetime, timezone
 import global_vars
-from docx import Document
+#from docx import Document
 from constants import MESSAGE_TYPES
 
 def extract_raw_values(data):
@@ -238,7 +238,7 @@ def start_crew_function(query):
     final_answer = json.dumps(final_answer, indent=4)
     final_answer = update_tasks_data(final_answer)
 
-    file_name = save_in_docx(final_answer)
+    #file_name = save_in_docx(final_answer)
 
     final_markdown = json_to_markdown(final_answer)
 
@@ -246,6 +246,6 @@ def start_crew_function(query):
     message["type"] = MESSAGE_TYPES["final_answer"]
     message["from"] = f"{active_crew} (Final Result)"
     message["data"] = final_markdown
-    message["file_name"] = file_name
+    #message["file_name"] = file_name
 
     return message

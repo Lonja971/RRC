@@ -21,14 +21,6 @@ from config.llm import llm
 
 load_dotenv()
 
-def noop(*args, **kwargs):
-   print("Telemetry method called and noop'd\n")
-   pass
-
-for attr in dir(Telemetry):
-   if callable(getattr(Telemetry, attr)) and not attr.startswith("__"):
-       setattr(Telemetry, attr, noop)
-
 #---LLM---
 
 @CrewBase
